@@ -31,8 +31,16 @@ public class Pet implements Serializable {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBreed() {
@@ -81,5 +89,19 @@ public class Pet implements Serializable {
 
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", breed='" + breed + '\'' +
+                ", age=" + age +
+                ", ownerName='" + ownerName + '\'' +
+                ", contactInfo='" + contactInfo + '\'' +
+                ", registrationDateTime=" + registrationDateTime +
+                ", appointments=" + appointments +
+                '}';
     }
 }

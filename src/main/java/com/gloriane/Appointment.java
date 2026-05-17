@@ -1,48 +1,35 @@
 package com.gloriane;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Appointment implements Serializable {
-    private String AppointmentType;
-    private String dateTime;
-    private String Notes;
+    private String appointmentType;
+    private LocalDateTime dateTime;
+    private String notes;
 
-    public Appointment(int petId, String appointmentType, String dateTime, String notes) {
-        AppointmentType = appointmentType;
+    public Appointment(String appointmentType, LocalDateTime dateTime, String notes) {
+        this.appointmentType = appointmentType;
         this.dateTime = dateTime;
-        Notes = notes;
+        this.notes = notes;
     }
 
-    public String getAppointmentType() {
-        return AppointmentType;
-    }
+    public String getAppointmentType() { return appointmentType; }
+    public LocalDateTime getDateTime() { return dateTime; }
+    public String getNotes() { return notes; }
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public String getNotes() {
-        return Notes;
-    }
-
-        public void setAppointmentType(String appointmentType) {
-            AppointmentType = appointmentType;
-        }
-
-        public void setDateTime(String dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public void setNotes(String notes) {
-            Notes = notes;
-        }
+    public void setAppointmentType(String appointmentType) { this.appointmentType = appointmentType; }
+    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+    public void setNotes(String notes) { this.notes = notes; }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return "Appointment{" +
-                "AppointmentType='" + AppointmentType + '\'' +
-                ", dateTime='" + dateTime + '\'' +
-                ", Notes='" + Notes + '\'' +
+                "appointmentType='" + appointmentType + '\'' +
+                ", dateTime='" + dateTime.format(formatter) + '\'' +
+                ", notes='" + notes + '\'' +
                 '}';
     }
 }
