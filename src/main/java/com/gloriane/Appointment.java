@@ -1,6 +1,8 @@
 package com.gloriane;
 
-public class Appointment {
+import java.io.Serializable;
+
+public class Appointment implements Serializable {
     private String AppointmentType;
     private String dateTime;
     private String Notes;

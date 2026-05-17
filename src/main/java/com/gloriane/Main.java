@@ -54,7 +54,8 @@ public class Main {
         }
     }
 
-    public static void registerPet() {
+    private static void registerPet() {
+        System.out.println("Registering a new pet...");
         System.out.println("Enter pet name: ");
         String name = new Scanner(System.in).nextLine();
         if (pets.stream().anyMatch(p -> p.getName().equalsIgnoreCase(name))) {
@@ -79,26 +80,47 @@ public class Main {
         System.out.println("Pet registered successfully!");
     }
 
-    public static void scheduleAppointment() {
-        if (pets.isEmpty()) {
-            System.out.println("No pets registered. Please register a pet first.");
-            return;
-        }
+    private static void scheduleAppointment() {
         System.out.println("Scheduling appointment...");
         System.out.println("Enter appointment type: ");
         String appointmentType = new Scanner(System.in).nextLine();
+        if(pets.isEmpty()) {
+            System.out.println("No pets registered. Please register a pet first.");
+            return;
+        }
         System.out.println("Enter appointment date/time: ");
         String appointmentDateTime = new Scanner(System.in).nextLine();
+
         System.out.println("Enter appointment notes: ");
         String appointmentNotes = new Scanner(System.in).nextLine();
+
         Appointment appointment = new Appointment(1, appointmentType, appointmentDateTime, appointmentNotes);
         appointments.add(appointment);
         savePetsToFile();
     }
 
-    public static void storeData() {
+    private static void storeData() {
         System.out.println("Storing data...");
+        System.out.println("Data stored successfully!");
         savePetsToFile();
+    }
+
+    private static void displayRecords() {
+        System.out.println("Displaying records...");
+        System.out.println("Registered Pets:");
+        if (pets.isEmpty()) {
+            System.out.println("No pets registered.");
+            return;
+        }
+        for (Pet pet : pets) {
+            System.out.println(pet);
+        }
+    }
+
+    private static void generateReports() {
+        System.out.println("Generating reports...");
+        System.out.println("Total number of pets: " + pets.size());
+        System.out.println("Total number of appointments: " + appointments.size());
     }
 
     private static void savePetsToFile() {
