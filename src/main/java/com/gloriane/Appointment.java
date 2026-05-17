@@ -5,7 +5,7 @@ public class Appointment {
     private String dateTime;
     private String Notes;
 
-    public Appointment(String appointmentType, String dateTime, String notes) {
+    public Appointment(int petId, String appointmentType, String dateTime, String notes) {
         AppointmentType = appointmentType;
         this.dateTime = dateTime;
         Notes = notes;

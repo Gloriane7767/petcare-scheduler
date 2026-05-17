@@ -1,29 +1,33 @@
 package com.gloriane;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class Pet {
-    private int id;
+public class Pet implements Serializable {
+    private String id;
     private String name;
-    private String Breed;
+    private String breed;
     private int age;
     private String ownerName;
     private String contactInfo;
-    private String RegistrationDate;
-    private List<String> appointments;
+    private LocalDateTime registrationDateTime;
+    private List<Appointment> appointments;
 
-    public Pet(int id, String name, String breed, int age, String ownerName, String contactInfo, String registrationDate, List<String> appointments) {
-        this.id = id;
+    public Pet(String name, String breed, int age, String ownerName, String contactInfo, List<Appointment> appointments) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
-        Breed = breed;
+        this.breed = breed;
         this.age = age;
         this.ownerName = ownerName;
         this.contactInfo = contactInfo;
-        RegistrationDate = registrationDate;
-        this.appointments = appointments;
+        this.registrationDateTime = LocalDateTime.now();
+        this.appointments = appointments != null ? appointments : new ArrayList<>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -32,7 +36,7 @@ public class Pet {
     }
 
     public String getBreed() {
-        return Breed;
+        return breed;
     }
 
     public int getAge() {
@@ -47,16 +51,16 @@ public class Pet {
         return contactInfo;
     }
 
-    public String getRegistrationDate() {
-        return RegistrationDate;
+    public LocalDateTime getRegistrationDateTime() {
+        return registrationDateTime;
     }
 
-    public List<String> getAppointments() {
+    public List<Appointment> getAppointments() {
         return appointments;
     }
 
     public void setBreed(String breed) {
-        Breed = breed;
+        this.breed = breed;
     }
 
     public void setAge(int age) {
@@ -71,25 +75,11 @@ public class Pet {
         this.contactInfo = contactInfo;
     }
 
-    public void setRegistrationDate(String registrationDate) {
-        RegistrationDate = registrationDate;
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDateTime = registrationDate;
     }
 
-    public void setAppointments(List<String> appointments) {
-        this.appointments = appointments;
-    }
-
-    @Override
-    public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", Breed='" + Breed + '\'' +
-                ", age=" + age +
-                ", ownerName='" + ownerName + '\'' +
-                ", contactInfo='" + contactInfo + '\'' +
-                ", RegistrationDate='" + RegistrationDate + '\'' +
-                ", appointments=" + appointments +
-                '}';
+    public void addAppointment(Appointment appointment) {
+        this.appointments.add(appointment);
     }
 }
